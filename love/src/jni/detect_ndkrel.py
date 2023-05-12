@@ -3,11 +3,8 @@ import re
 
 def main(argv):
     if len(argv) > 1:
-        # argv[0] = source.properties
-        # argv[1] = desired NDK version
-        f = open(argv[0], "r")
-        contents = f.read()
-        f.close()
+        with open(argv[0], "r") as f:
+            contents = f.read()
         matches = re.findall("Pkg.Revision = (\d+)", contents)
         if len(matches) >= 1 and int(matches[0]) >= int(argv[1]):
             print("yes")
